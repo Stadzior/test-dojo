@@ -11,7 +11,7 @@ namespace E03.DependencyBreaking.WebServiceContract
     {
         public PaymentResponse RequestPayment(PaymentRequest request)
         {
-            throw new ApplicationException("Could not connect to remote endpoint. Service unavailable.");
+            return new PaymentResponse();
         }
     }
     

@@ -27,7 +27,6 @@ namespace E03.DependencyBreaking
             }
 
             AddGifts(total);
-
             IAppSettingsProvider provider = new AppSettingsProvider();
             var request = GiveDiscount(total, isWholesale, provider);
 
@@ -64,9 +63,8 @@ namespace E03.DependencyBreaking
             }
         }
 
-        public PaymentRequest GiveDiscount(double total, bool isWholesale, IAppSettingsProvider provider)
+        public virtual PaymentRequest GiveDiscount(double total, bool isWholesale,IAppSettingsProvider provider)
         {
-
             PaymentRequest request = new PaymentRequest();
             if (total > (double) provider.GetAppSetting("DiscountTreshold"))
             {
@@ -88,7 +86,7 @@ namespace E03.DependencyBreaking
         {
             #region lots of code...
 
-            throw new NotImplementedException();
+            
 
             #endregion
         }
