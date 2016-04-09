@@ -9,10 +9,6 @@ namespace E03.DependencyBreaking
 {
     public class ShoppingCart : List<Product>
     {
-        public ShoppingCart()
-        {
-
-        }
 
         public void Checkout()
         {
@@ -22,10 +18,7 @@ namespace E03.DependencyBreaking
 
             if (Count == 0) return;
 
-            using (var db = new ShopDbContext())
-            {
-                db.ShoppingCarts.Save(cart);
-            }
+            SaveCart(cart);
 
             foreach (var product in cart)
             {
@@ -33,18 +26,7 @@ namespace E03.DependencyBreaking
                 total += product.Price * product.Quantity;
             }
 
-            using (var db = new ShopDbContext())
-            {
-                var gift = db.PromoGifts
-                    .Where(g => total > g.MinOrderValue)
-                    .OrderBy(g => g.MinOrderValue)
-                    .FirstOrDefault();
-
-                if (gift != null)
-                {
-                    this.Add(gift);
-                }
-            }
+            AddGifts(total);
 
             IAppSettingsProvider provider = new AppSettingsProvider();
             var request = GiveDiscount(total, isWholesale, provider);
@@ -55,6 +37,30 @@ namespace E03.DependencyBreaking
             if (response != null)
             {
                 ExecutePayment(response);
+            }
+        }
+
+        public virtual void AddGifts(double total)
+        {
+            using (var db = new ShopDbContext())
+            {
+                var gift = db.PromoGifts
+                    .Where(g => total > g.MinOrderValue)
+                    .OrderBy(g => g.MinOrderValue)
+                    .FirstOrDefault();
+
+                if (gift != null)
+                {
+                   Add(gift);
+                }
+            }
+        }
+
+        public virtual void SaveCart(ShoppingCart cart)
+        {
+            using (var db = new ShopDbContext())
+            {
+                db.ShoppingCarts.Save(cart);
             }
         }
 

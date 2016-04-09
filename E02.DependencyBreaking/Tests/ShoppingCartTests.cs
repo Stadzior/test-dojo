@@ -32,8 +32,8 @@ namespace E03.DependencyBreaking.Tests
         public void DrinkingBeer_ShouldBeAllowed_WhenThatTestsPass()
         {
             // Arrange
-            ShoppingCart cart = new ShoppingCart();
-            Product item = new Product();
+            TestableShoppingClass cart = new TestableShoppingClass();
+            Product item = new Product(1,1,1);
             cart.Add(item);
 
             // Act
