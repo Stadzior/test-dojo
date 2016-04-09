@@ -33,6 +33,8 @@ namespace E03.DependencyBreaking.Tests
         {
             // Arrange
             ShoppingCart cart = new ShoppingCart();
+            Product item = new Product();
+            cart.Add(item);
 
             // Act
             cart.Checkout();

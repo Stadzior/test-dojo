@@ -45,6 +45,7 @@ namespace E03.DependencyBreaking
                     this.Add(gift);
                 }
             }
+
             IAppSettingsProvider provider = new AppSettingsProvider();
             var request = GiveDiscount(total, isWholesale, provider);
 
