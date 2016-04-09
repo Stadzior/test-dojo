@@ -65,7 +65,7 @@ namespace E04.Moq.Tests
             // ???
         }
 
-        [Test, Ignore]
+        [Test]
         public void Checkout_ShouldNotAwardLoyaltyPoints_WhenCartIsEmpty()
         {
         }

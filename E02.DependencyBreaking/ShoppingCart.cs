@@ -40,12 +40,25 @@ namespace E03.DependencyBreaking
                     this.Add(gift);
                 }
             }
+            IAppSettingsProvider provider = new AppSettingsProvider();
+            var request = GiveDiscount(total, isWholesale, provider);
+
+            var cli = new ShopWebClient();
+            var response = cli.RequestPayment(request);
+
+            if (response != null)
+            {
+                ExecutePayment(response);
+            }
+        }
+
+        public PaymentRequest GiveDiscount(double total, bool isWholesale, IAppSettingsProvider provider)
+        {
 
             PaymentRequest request = new PaymentRequest();
-
-            if (total > (double)ConfigurationManager.AppSettings["DiscountTreshold"])
+            if (total > (double) provider.GetAppSetting("DiscountTreshold"))
             {
-                var discount = (double)ConfigurationManager.AppSettings["Discount"];
+                var discount = (double)provider.GetAppSetting("Discount");
 
                 if (isWholesale) discount = discount * 2;
 
@@ -56,14 +69,7 @@ namespace E03.DependencyBreaking
             {
                 request.Total = total;
             }
-
-            var cli = new ShopWebClient();
-            var response = cli.RequestPayment(request);
-
-            if (response != null)
-            {
-                ExecutePayment(response);
-            }
+            return request;
         }
 
         private void ExecutePayment(PaymentResponse response)
