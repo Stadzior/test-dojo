@@ -9,6 +9,11 @@ namespace E03.DependencyBreaking
 {
     public class ShoppingCart : List<Product>
     {
+        public ShoppingCart()
+        {
+
+        }
+
         public void Checkout()
         {
             var cart = this;

@@ -27,5 +27,18 @@ namespace E03.DependencyBreaking.Tests
 
             request.Discount.ShouldBe(0.02);
         }
+
+        [Test]
+        public void DrinkingBeer_ShouldBeAllowed_WhenThatTestsPass()
+        {
+            // Arrange
+            ShoppingCart cart = new ShoppingCart();
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+            true.ShouldBeTrue();
+        }
     }
 }
