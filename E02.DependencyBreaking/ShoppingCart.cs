@@ -73,7 +73,7 @@ namespace E03.DependencyBreaking
         {
 
             PaymentRequest request = new PaymentRequest();
-            if (total > (double)_provider.GetAppSetting("DiscountTreshold"))
+            if (total > (int)_provider.GetAppSetting("DiscountTreshold"))
             {
                 double discount = (double)_provider.GetAppSetting("Discount");
                 if (isWholesale) discount *= 2;

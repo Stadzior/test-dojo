@@ -1,4 +1,5 @@
 ﻿using E03.DependencyBreaking.WebServiceContract;
+using Moq;
 using NUnit.Framework;
 using Shouldly;
 using System;
@@ -9,17 +10,32 @@ using System.Threading.Tasks;
 
 namespace E03.DependencyBreaking.Tests
 {
+    [TestFixture]
     class ShoppingCartTests
     {
+        private Mock<IAppSettingsProvider> providerMock;
+        private Mock<IShopClient> clientMock;
+        private TestableShoppingCart cart;
+
+        [OneTimeSetUp]
+        public void SetUp()
+        {
+            providerMock = new Mock<IAppSettingsProvider>();
+            providerMock.Setup(provider => provider.GetAppSetting("Discount")).Returns(0.01);
+            providerMock.Setup(provider => provider.GetAppSetting("DiscountTreshold")).Returns(999);
+
+            clientMock = new Mock<IShopClient>();
+            clientMock.Setup(client => client.RequestPayment(It.IsAny<PaymentRequest>())).Returns(new PaymentResponse());
+
+            cart = new TestableShoppingCart(providerMock.Object, clientMock.Object);
+        }
+
         [Test]
         public void DiscountShouldBeDoubled_WhenItIsWholesale()
         {
             // Arrange
             var total = 1000;
             bool isWholesale = true;
-            FakeAppSettingsProvider fakeProvider = new FakeAppSettingsProvider(0.01, 1000);
-            FakeShopWebClient fakeClient = new FakeShopWebClient();
-            TestableShoppingCart cart = new TestableShoppingCart(fakeProvider,fakeClient);
 
             // Act
             var request = cart.GiveDiscount(total, isWholesale);
@@ -33,9 +49,7 @@ namespace E03.DependencyBreaking.Tests
         public void DrinkingBeer_ShouldBeAllowed_WhenThatTestsPass()
         {
             // Arrange
-            FakeAppSettingsProvider fakeProvider = new FakeAppSettingsProvider();
-            FakeShopWebClient fakeClient = new FakeShopWebClient();
-            TestableShoppingCart cart = new TestableShoppingCart(fakeProvider, fakeClient);
+
             Product item = new Product(1,1,1);
             cart.Add(item);
 
@@ -44,6 +58,12 @@ namespace E03.DependencyBreaking.Tests
 
             // Assert
             true.ShouldBeTrue();
+        }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+
         }
     }
 }
