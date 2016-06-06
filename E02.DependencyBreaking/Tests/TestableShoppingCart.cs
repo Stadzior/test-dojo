@@ -24,7 +24,6 @@ namespace E03.DependencyBreaking.Tests
 
         public override PaymentRequest GiveDiscount(double total, bool isWholesale)
         {
-            _provider = new FakeAppSettingsProvider();
             return base.GiveDiscount(total, isWholesale);
         }
 
