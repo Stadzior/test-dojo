@@ -17,11 +17,12 @@ namespace E03.DependencyBreaking.Tests
             // Arrange
             var total = 1000;
             bool isWholesale = true;
-            FakeAppSettingsProvider fakeProvider = new FakeAppSettingsProvider();
-            ShoppingCart cart = new ShoppingCart();
+            FakeAppSettingsProvider fakeProvider = new FakeAppSettingsProvider(0.01, 1000);
+            FakeShopWebClient fakeClient = new FakeShopWebClient();
+            TestableShoppingCart cart = new TestableShoppingCart(fakeProvider,fakeClient);
 
             // Act
-            var request = cart.GiveDiscount(total, isWholesale, fakeProvider);
+            var request = cart.GiveDiscount(total, isWholesale);
 
             // Assert
 
@@ -32,7 +33,9 @@ namespace E03.DependencyBreaking.Tests
         public void DrinkingBeer_ShouldBeAllowed_WhenThatTestsPass()
         {
             // Arrange
-            TestableShoppingClass cart = new TestableShoppingClass();
+            FakeAppSettingsProvider fakeProvider = new FakeAppSettingsProvider();
+            FakeShopWebClient fakeClient = new FakeShopWebClient();
+            TestableShoppingCart cart = new TestableShoppingCart(fakeProvider, fakeClient);
             Product item = new Product(1,1,1);
             cart.Add(item);
 

@@ -81,8 +81,9 @@
     <Compile Include="SettingsCollection.cs" />
     <Compile Include="Tests\FakeAppSettingsProvider.cs" />
     <Compile Include="IAppSettingsProvider.cs" />
+    <Compile Include="Tests\FakeShopWebClient.cs" />
     <Compile Include="Tests\ShoppingCartTests.cs" />
-    <Compile Include="Tests\TestableShoppingClass.cs" />
+    <Compile Include="Tests\TestableShoppingCart.cs" />
     <Compile Include="WebServiceContract\IShopClient.cs" />
     <Compile Include="WebServiceContract\PaymentRequest.cs" />
     <Compile Include="WebServiceContract\PaymentResponse.cs" />

@@ -9,7 +9,15 @@ namespace E03.DependencyBreaking
 {
     public class ShoppingCart : List<Product>
     {
+        private IAppSettingsProvider _provider;
+        private IShopClient _client;
+        
 
+        public ShoppingCart(IAppSettingsProvider provider,IShopClient client)
+        {
+            _provider = provider;
+            _client = client;
+        }
         public void Checkout()
         {
             var cart = this;
@@ -27,11 +35,9 @@ namespace E03.DependencyBreaking
             }
 
             AddGifts(total);
-            IAppSettingsProvider provider = new AppSettingsProvider();
-            var request = GiveDiscount(total, isWholesale, provider);
+            var request = GiveDiscount(total, isWholesale);
 
-            var cli = new ShopWebClient();
-            var response = cli.RequestPayment(request);
+            var response = _client.RequestPayment(request);
 
             if (response != null)
             {
@@ -63,14 +69,14 @@ namespace E03.DependencyBreaking
             }
         }
 
-        public virtual PaymentRequest GiveDiscount(double total, bool isWholesale,IAppSettingsProvider provider)
+        public virtual PaymentRequest GiveDiscount(double total, bool isWholesale)
         {
-            PaymentRequest request = new PaymentRequest();
-            if (total > (double) provider.GetAppSetting("DiscountTreshold"))
-            {
-                var discount = (double)provider.GetAppSetting("Discount");
 
-                if (isWholesale) discount = discount * 2;
+            PaymentRequest request = new PaymentRequest();
+            if (total > (double)_provider.GetAppSetting("DiscountTreshold"))
+            {
+                double discount = (double)_provider.GetAppSetting("Discount");
+                if (isWholesale) discount *= 2;
 
                 request.Total = total * (1 - discount);
                 request.Discount = discount;
