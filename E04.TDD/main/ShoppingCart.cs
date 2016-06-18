@@ -23,20 +23,29 @@ namespace E02.TDD.main
 
         internal void Checkout()
         {
+            Payment.Value = CalculateValue();
+            Payment.PercentDiscount = CalculatePercentDiscount();
+            Payment.Total = Payment.Value - (Payment.Value * Payment.PercentDiscount) / 100;
+        }
+
+        private double CalculateValue()
+        {
+            double value = 0.0;
             foreach (var item in Items)
             {
-                Payment.Value += item.Price * item.Quantity;
+                value += item.Price * item.Quantity;
             }
+            return value;
+        }
 
+        private double CalculatePercentDiscount()
+        {
             double discountLevel = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_LEVEL : REGULAR_DISCOUNT_LEVEL;
             double discountPercent = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_PERCENT : REGULAR_DISCOUNT_PERCENT;
 
-            if (Payment.Value > discountLevel)
-            {
-                Payment.PercentDiscount = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;
-            }
+            discountPercent = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;
 
-            Payment.Total = Payment.Value - (Payment.Value * Payment.PercentDiscount) / 100;    
+            return discountPercent;
         }
     }
 }
