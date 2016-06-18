@@ -16,6 +16,10 @@ namespace E02.TDD.main
 
         internal void Checkout()
         {
+            foreach (var item in Items)
+            {
+                Payment.Value += item.Price * item.Quantity;
+            }
         }
     }
 }
