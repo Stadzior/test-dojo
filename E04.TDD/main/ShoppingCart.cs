@@ -34,7 +34,9 @@ namespace E02.TDD.main
             if (Payment.Value > discountLevel)
             {
                 Payment.PercentDiscount = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;
-            }           
+            }
+
+            Payment.Total = Payment.Value - (Payment.Value * Payment.PercentDiscount) / 100;    
         }
     }
 }
