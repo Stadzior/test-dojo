@@ -3,6 +3,10 @@ using E02.TDD.main;
 using NUnit.Framework;
 using Shouldly;
 using Moq;
+using E02.TDD.test;
+using static E02.TDD.test.ItemBuilder;
+using static E02.TDD.test.ItemCollectionBuilder;
+using static E02.TDD.test.ShoppingCartBuilder;
 
 namespace E02.TDD.test
 {
@@ -44,32 +48,7 @@ namespace E02.TDD.test
             cart.Payment.Value.ShouldBe(100.0);
         }
 
-        private ItemCollectionBuilder Items()
-        {
-            return new ItemCollectionBuilder();
-        }
-
-        private ItemBuilder Item()
-        {
-            return new ItemBuilder();
-        }
-
-        private ShoppingCartBuilder Cart()
-        {
-            return new ShoppingCartBuilder();
-        }
-
-        private ShoppingCart a(ShoppingCartBuilder builder)
-        {
-            return builder.build();
-        }
-
-        private ItemCollection a(ItemCollectionBuilder builder)
-        {
-            return builder.build();
-        }
-
-        private Item a(ItemBuilder builder)
+        private T a<T> (IBuilder<T> builder)
         {
             return builder.build();
         }

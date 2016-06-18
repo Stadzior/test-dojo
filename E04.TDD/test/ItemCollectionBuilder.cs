@@ -2,7 +2,7 @@
 
 namespace E02.TDD.test
 {
-    internal class ItemCollectionBuilder
+    internal class ItemCollectionBuilder : IBuilder<ItemCollection>
     {
         private ItemCollection items;
 
@@ -11,13 +11,18 @@ namespace E02.TDD.test
             items = new ItemCollection();
         }
 
+        public static ItemCollectionBuilder Items()
+        {
+            return new ItemCollectionBuilder();
+        }
+
         internal ItemCollectionBuilder withItem(Item item)
         {
             items.Add(item);
             return this;
         }
 
-        internal ItemCollection build()
+        public ItemCollection build()
         {
             return items;
         }

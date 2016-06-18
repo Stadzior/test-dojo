@@ -3,16 +3,21 @@ using E02.TDD.main;
 
 namespace E02.TDD.test
 {
-    internal class ShoppingCartBuilder
+    internal class ShoppingCartBuilder : IBuilder<ShoppingCart>
     {
         private ShoppingCart cart;
+
+        public static ShoppingCartBuilder Cart()
+        {
+            return new ShoppingCartBuilder();
+        }
 
         public ShoppingCartBuilder()
         {
             cart = new ShoppingCart();
         }
 
-        internal ShoppingCart build()
+        public ShoppingCart build()
         {
             return cart;
         }

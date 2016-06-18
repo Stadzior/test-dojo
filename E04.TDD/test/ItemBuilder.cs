@@ -2,13 +2,18 @@
 
 namespace E02.TDD.test
 {
-    internal class ItemBuilder
+    internal class ItemBuilder : IBuilder<Item>
     {
         private Item item;
 
         public ItemBuilder()
         {
             item = new Item();
+        }
+
+        public static ItemBuilder Item()
+        {
+            return new ItemBuilder();
         }
 
         internal ItemBuilder withPrice(double price)
@@ -23,7 +28,7 @@ namespace E02.TDD.test
             return this;
         }
 
-        internal Item build()
+        public Item build()
         {
             return item;
         }

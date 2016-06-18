@@ -78,6 +78,7 @@
     <Compile Include="main\ShoppingCart.cs" />
     <Compile Include="main\ItemCollection.cs" />
     <Compile Include="main\Item.cs" />
+    <Compile Include="test\IBuilder.cs" />
     <Compile Include="test\ItemBuilder.cs" />
     <Compile Include="test\ItemCollectionBuilder.cs" />
     <Compile Include="test\ShoppingCartBuilder.cs" />
