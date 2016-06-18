@@ -83,6 +83,7 @@
     <Compile Include="test\ItemCollectionBuilder.cs" />
     <Compile Include="test\ShoppingCartBuilder.cs" />
     <Compile Include="test\ShoppingCartTests.cs" />
+    <Compile Include="test\SpecialDateTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

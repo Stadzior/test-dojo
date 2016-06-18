@@ -28,6 +28,11 @@ namespace E02.TDD.test
             return this;
         }
 
+        internal ShoppingCartBuilder withPaymentDate(DateTime paymentDate)
+        {
+            cart.Payment = new Payment(paymentDate);
+            return this;
+        }
 
     }
 }
