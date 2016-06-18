@@ -79,6 +79,21 @@ namespace E02.TDD.test
             cart.Payment.PercentDiscount.ShouldBe(0.75);
         }
 
+        [Test]
+        public void Total_ShouldBeNineEightFive_WhenPaymentValueIsOneThousand()
+        {
+            // Arrange
+            Item item = a(Item().WithPrice(1000.0).WithQuantity(1));
+            ItemCollection items = a(Items().WithItem(item));
+            ShoppingCart cart = a(Cart().WithItems(items));
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+            cart.Payment.Total.ShouldBe(985);
+        }
+
         private T a<T> (IBuilder<T> builder)
         {
             return builder.Build();
