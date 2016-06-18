@@ -60,7 +60,6 @@ namespace E02.TDD.test
             cart.Checkout();
 
             // Assert
-
             cart.Payment.PercentDiscount.ShouldBe(1.5);
         }
 
