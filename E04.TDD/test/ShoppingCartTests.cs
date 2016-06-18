@@ -48,6 +48,22 @@ namespace E02.TDD.test
             cart.Payment.Value.ShouldBe(100.0);
         }
 
+        [Test]
+        public void Discount_ShouldBeOnePointFive_WhenPaymentValue_ExceedsThreeHundred()
+        {
+            // Arrange
+            Item item = a(Item().withPrice(1000.0).withQuantity(1));
+            ItemCollection items = a(Items().withItem(item));
+            ShoppingCart cart = a(Cart().withItems(items));
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+
+            cart.Payment.PercentDiscount.ShouldBe(1.5);
+        }
+
         private T a<T> (IBuilder<T> builder)
         {
             return builder.build();
