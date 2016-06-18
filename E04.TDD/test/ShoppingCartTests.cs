@@ -40,7 +40,18 @@ namespace E02.TDD.test
             cart.Checkout();
 
             // Assert
+
             cart.Payment.Value.ShouldBe(100.0);
+        }
+
+        private ItemCollectionBuilder Items()
+        {
+            return new ItemCollectionBuilder();
+        }
+
+        private ItemBuilder Item()
+        {
+            return new ItemBuilder();
         }
 
         private ShoppingCartBuilder Cart()
@@ -49,6 +60,16 @@ namespace E02.TDD.test
         }
 
         private ShoppingCart a(ShoppingCartBuilder builder)
+        {
+            return builder.build();
+        }
+
+        private ItemCollection a(ItemCollectionBuilder builder)
+        {
+            return builder.build();
+        }
+
+        private Item a(ItemBuilder builder)
         {
             return builder.build();
         }

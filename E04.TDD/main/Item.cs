@@ -2,5 +2,7 @@
 {
     internal class Item
     {
+        public double Price { get; internal set; }
+        public double Quantity { get; internal set; }
     }
 }
