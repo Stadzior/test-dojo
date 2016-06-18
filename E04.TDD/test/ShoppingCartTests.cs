@@ -94,6 +94,21 @@ namespace E02.TDD.test
             cart.Payment.Total.ShouldBe(985);
         }
 
+        [Test]
+        public void Discount_ShouldBeDoubledToThreePercent_WhenWholesaleAmountIsReached()
+        {
+            // Arrange
+            Item item = a(Item().WithPrice(1000.0).WithQuantity(100).WithWholesale(99));
+            ItemCollection items = a(Items().WithItem(item));
+            ShoppingCart cart = a(Cart().WithItems(items));
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+            cart.Payment.PercentDiscount.ShouldBe(3);
+        }
+
         private T a<T> (IBuilder<T> builder)
         {
             return builder.Build();
