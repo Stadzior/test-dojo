@@ -5,6 +5,10 @@ namespace E02.TDD.main
 {
     internal class ShoppingCart
     {
+        private const double DISCOUNT_LEVEL = 300;
+        private const double REGULAR_DISCOUNT_PERCENT = 1.5;
+        private const double NO_DISCOUNT = 0.0;
+
         public ItemCollection Items { get; internal set; }
         public Payment Payment { get; set; }
 
@@ -21,10 +25,7 @@ namespace E02.TDD.main
                 Payment.Value += item.Price * item.Quantity;
             }
 
-            if (Payment.Value > 300)
-            {
-                Payment.PercentDiscount = 1.5;
-            }
+            Payment.PercentDiscount = Payment.Value > DISCOUNT_LEVEL ? REGULAR_DISCOUNT_PERCENT : NO_DISCOUNT;
         }
     }
 }
