@@ -32,5 +32,11 @@ namespace E02.TDD.test.Builders
         {
             return item;
         }
+
+        internal ItemBuilder WithWholesale(int wholesale)
+        {
+            item.Wholesale = wholesale;
+            return this;
+        }
     }
 }
