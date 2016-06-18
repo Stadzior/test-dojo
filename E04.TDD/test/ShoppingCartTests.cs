@@ -4,10 +4,10 @@ using NUnit.Framework;
 using Shouldly;
 using Moq;
 using E02.TDD.test;
-using static E02.TDD.test.ItemBuilder;
-using static E02.TDD.test.ItemCollectionBuilder;
-using static E02.TDD.test.ShoppingCartBuilder;
-
+using static E02.TDD.test.Builders.ItemBuilder;
+using static E02.TDD.test.Builders.ItemCollectionBuilder;
+using static E02.TDD.test.Builders.ShoppingCartBuilder;
+using static E02.TDD.test.Builders.PaymentBuilder;
 namespace E02.TDD.test
 {
     [TestFixture]
@@ -23,7 +23,7 @@ namespace E02.TDD.test
         public void Charge_ShouldBeZero_WhenCartIsEmpty()
         {
             // Arrange
-            ShoppingCart cart = a(Cart().withItems(ItemCollection.Empty()));
+            ShoppingCart cart = a(Cart().WithItems(ItemCollection.Empty()));
             
             // Act
             cart.Checkout();
@@ -36,9 +36,9 @@ namespace E02.TDD.test
         public void Charge_ShouldBeOneHundred_WhenCartContainsTwoProducts_WhichCostsFifty()
         {
             // Arrange
-            Item item = a(Item().withPrice(50.0).withQuantity(2));
-            ItemCollection items = a(Items().withItem(item));
-            ShoppingCart cart = a(Cart().withItems(items));
+            Item item = a(Item().WithPrice(50.0).WithQuantity(2));
+            ItemCollection items = a(Items().WithItem(item));
+            ShoppingCart cart = a(Cart().WithItems(items));
 
             // Act
             cart.Checkout();
@@ -52,9 +52,9 @@ namespace E02.TDD.test
         public void Discount_ShouldBeOnePointFive_WhenPaymentValue_ExceedsThreeHundred()
         {
             // Arrange
-            Item item = a(Item().withPrice(1000.0).withQuantity(1));
-            ItemCollection items = a(Items().withItem(item));
-            ShoppingCart cart = a(Cart().withItems(items));
+            Item item = a(Item().WithPrice(1000.0).WithQuantity(1));
+            ItemCollection items = a(Items().WithItem(item));
+            ShoppingCart cart = a(Cart().WithItems(items));
 
             // Act
             cart.Checkout();
@@ -67,10 +67,10 @@ namespace E02.TDD.test
         public void Discount_ShouldBeNoughtPointSeventyFive_WhenThereIsXmas()
         {
             // Arrange
-            Item item = a(Item().withPrice(1000.0).withQuantity(1));
-            ItemCollection items = a(Items().withItem(item));
-            DateTime paymentDate = SpecialDateTime.Xmas();
-            ShoppingCart cart = a(Cart().withItems(items).withPaymentDate(paymentDate));
+            Item item = a(Item().WithPrice(1000.0).WithQuantity(1));
+            ItemCollection items = a(Items().WithItem(item));
+            Payment payment = a(Payment().WithDate(SpecialDateTime.Xmas()));
+            ShoppingCart cart = a(Cart().WithItems(items).WithPayment(payment));
 
             // Act
             cart.Checkout();
@@ -81,7 +81,7 @@ namespace E02.TDD.test
 
         private T a<T> (IBuilder<T> builder)
         {
-            return builder.build();
+            return builder.Build();
         }
     }
 }

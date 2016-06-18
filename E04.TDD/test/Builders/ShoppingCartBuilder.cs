@@ -1,7 +1,7 @@
 ﻿using System;
 using E02.TDD.main;
 
-namespace E02.TDD.test
+namespace E02.TDD.test.Builders
 {
     internal class ShoppingCartBuilder : IBuilder<ShoppingCart>
     {
@@ -17,22 +17,21 @@ namespace E02.TDD.test
             cart = new ShoppingCart();
         }
 
-        public ShoppingCart build()
+        public ShoppingCart Build()
         {
             return cart;
         }
 
-        internal ShoppingCartBuilder withItems(ItemCollection items)
+        internal ShoppingCartBuilder WithItems(ItemCollection items)
         {
             cart.Items = items;
             return this;
         }
 
-        internal ShoppingCartBuilder withPaymentDate(DateTime paymentDate)
+        internal ShoppingCartBuilder WithPayment(Payment payment)
         {
-            cart.Payment.Date = paymentDate;
+            cart.Payment = payment;
             return this;
         }
-
     }
 }

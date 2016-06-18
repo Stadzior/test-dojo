@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace E02.TDD.test
+namespace E02.TDD.test.Builders
 {
     internal class ItemCollectionBuilder : IBuilder<ItemCollection>
     {
@@ -16,13 +16,13 @@ namespace E02.TDD.test
             return new ItemCollectionBuilder();
         }
 
-        internal ItemCollectionBuilder withItem(Item item)
+        internal ItemCollectionBuilder WithItem(Item item)
         {
             items.Add(item);
             return this;
         }
 
-        public ItemCollection build()
+        public ItemCollection Build()
         {
             return items;
         }

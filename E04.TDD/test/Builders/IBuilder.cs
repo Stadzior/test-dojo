@@ -2,6 +2,6 @@
 {
     internal interface IBuilder<T>
     {
-        T build();
+        T Build();
     }
 }

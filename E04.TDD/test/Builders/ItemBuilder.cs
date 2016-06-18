@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace E02.TDD.test
+namespace E02.TDD.test.Builders
 {
     internal class ItemBuilder : IBuilder<Item>
     {
@@ -16,19 +16,19 @@ namespace E02.TDD.test
             return new ItemBuilder();
         }
 
-        internal ItemBuilder withPrice(double price)
+        internal ItemBuilder WithPrice(double price)
         {
             item.Price = price;
             return this;
         }
 
-        internal ItemBuilder withQuantity(double quantity)
+        internal ItemBuilder WithQuantity(double quantity)
         {
             item.Quantity = quantity;
             return this;
         }
 
-        public Item build()
+        public Item Build()
         {
             return item;
         }
