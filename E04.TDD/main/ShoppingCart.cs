@@ -20,6 +20,11 @@ namespace E02.TDD.main
             {
                 Payment.Value += item.Price * item.Quantity;
             }
+
+            if (Payment.Value > 300)
+            {
+                Payment.PercentDiscount = 1.5;
+            }
         }
     }
 }
