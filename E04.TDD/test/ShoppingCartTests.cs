@@ -63,6 +63,22 @@ namespace E02.TDD.test
             cart.Payment.PercentDiscount.ShouldBe(1.5);
         }
 
+        [Test]
+        public void Discount_ShouldBeNoughtPointSeventyFive_WhenThereIsXmas()
+        {
+            // Arrange
+            Item item = a(Item().withPrice(1000.0).withQuantity(1));
+            ItemCollection items = a(Items().withItem(item));
+            DateTime paymentDate = SpecialDateTime.Xmas();
+            ShoppingCart cart = a(Cart().withItems(items).withPaymentDate(paymentDate));
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+            cart.Payment.PercentDiscount.ShouldBe(0.75);
+        }
+
         private T a<T> (IBuilder<T> builder)
         {
             return builder.build();
