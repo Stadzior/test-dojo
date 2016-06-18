@@ -30,7 +30,7 @@ namespace E02.TDD.test
 
         internal ShoppingCartBuilder withPaymentDate(DateTime paymentDate)
         {
-            cart.Payment = new Payment(paymentDate);
+            cart.Payment.Date = paymentDate;
             return this;
         }
 
