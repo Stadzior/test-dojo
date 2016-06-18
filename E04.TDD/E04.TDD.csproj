@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="main\Item.cs" />
     <Compile Include="main\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="main\ShoppingCart.cs" />
     <Compile Include="main\ItemCollection.cs" />
+    <Compile Include="main\Item.cs" />
     <Compile Include="test\ShoppingCartBuilder.cs" />
     <Compile Include="test\ShoppingCartTests.cs" />
   </ItemGroup>
