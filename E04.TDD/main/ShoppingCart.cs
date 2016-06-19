@@ -43,7 +43,8 @@ namespace E02.TDD.main
             double percentDiscount = 0.0;
             foreach (var item in Items)
             {
-                percentDiscount += CalculateItemPercentDiscount(item);
+                item.PercentDiscount = item.PercentDiscount == 0 ? CalculateItemPercentDiscount(item) : item.PercentDiscount;
+                percentDiscount += item.PercentDiscount;
             }
             percentDiscount /= Items.Count;
 

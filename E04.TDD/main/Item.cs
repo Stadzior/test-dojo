@@ -8,4 +8,5 @@
         public int Wholesale { get; internal set; }
 
     }
+
 }
