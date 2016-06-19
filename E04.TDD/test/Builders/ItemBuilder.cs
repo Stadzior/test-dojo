@@ -38,5 +38,11 @@ namespace E02.TDD.test.Builders
             item.Wholesale = wholesale;
             return this;
         }
+
+        internal ItemBuilder WithPercentDiscount(double discount)
+        {
+            item.PercentDiscount = discount;
+            return this;
+        }
     }
 }
