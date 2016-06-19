@@ -43,7 +43,7 @@ namespace E02.TDD.main
             double discountLevel = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_LEVEL : REGULAR_DISCOUNT_LEVEL;
             double discountPercent = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_PERCENT : REGULAR_DISCOUNT_PERCENT;
 
-            discountPercent = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;
+            discountPercent = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;      
 
             return discountPercent;
         }
