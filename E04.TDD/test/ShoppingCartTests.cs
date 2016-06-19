@@ -109,6 +109,23 @@ namespace E02.TDD.test
             cart.Payment.PercentDiscount.ShouldBe(3);
         }
 
+        [Test]
+        public void Discount_ShouldBeTwenty_WhenOneProductHasTenPercentDiscount_AndAnotherHasThirtyPercentDiscount()
+        {
+            // Arrange
+            Item itemWithTenPercentDiscount = a(Item().WithPrice(10.0).WithQuantity(1).WithPercentDiscount(10.0));
+            Item itemWithThirtyPercentDiscount = a(Item().WithPrice(10.0).WithQuantity(1).WithPercentDiscount(30.0));
+            ItemCollection items = a(Items().WithItem(itemWithTenPercentDiscount).WithItem(itemWithThirtyPercentDiscount));
+            ShoppingCart cart = a(Cart().WithItems(items));
+
+            // Act
+            cart.Checkout();
+
+            // Assert
+            cart.Payment.PercentDiscount.ShouldBe(20.0);
+        }
+
+
         private T a<T> (IBuilder<T> builder)
         {
             return builder.Build();
