@@ -48,7 +48,7 @@ namespace E02.TDD.main
             double discountPercent = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_PERCENT : REGULAR_DISCOUNT_PERCENT;
 
             discountPercent = Payment.Value > discountLevel ? discountPercent : NO_DISCOUNT;
-            discountPercent = item.Quantity > item.Wholesale ? discountPercent*2 : discountPercent;
+            discountPercent = item.Wholesale > 0 && item.Quantity > item.Wholesale ? discountPercent*2 : discountPercent;
             
             return discountPercent;
         }
