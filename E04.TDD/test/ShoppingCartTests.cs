@@ -67,7 +67,7 @@ namespace E02.TDD.test
         public void Discount_ShouldBeNoughtPointSeventyFive_WhenThereIsXmas()
         {
             // Arrange
-            Item item = a(Item().WithPrice(1000.0).WithQuantity(1));
+            Item item = a(Item().WithPrice(100.0).WithQuantity(1));
             ItemCollection items = a(Items().WithItem(item));
             Payment payment = a(Payment().WithDate(SpecialDateTime.Xmas()));
             ShoppingCart cart = a(Cart().WithItems(items).WithPayment(payment));
