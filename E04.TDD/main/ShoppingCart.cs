@@ -24,11 +24,7 @@ namespace E02.TDD.main
         internal void Checkout()
         {
             Payment.Value = CalculateValue();
-            foreach (var item in Items)
-            {
-                Payment.PercentDiscount += CalculatePercentDiscount(item);
-            }
-            Payment.PercentDiscount /= Items.Count;
+            Payment.PercentDiscount = CalculatePercentDiscount();
             Payment.Total = Payment.Value - (Payment.Value * Payment.PercentDiscount) / 100;
         }
 
@@ -42,7 +38,19 @@ namespace E02.TDD.main
             return value;
         }
 
-        private double CalculatePercentDiscount(Item item)
+        private double CalculatePercentDiscount()
+        {
+            double percentDiscount = 0.0;
+            foreach (var item in Items)
+            {
+                percentDiscount += CalculateItemPercentDiscount(item);
+            }
+            percentDiscount /= Items.Count;
+
+            return percentDiscount;
+        }
+
+        private double CalculateItemPercentDiscount(Item item)
         {
             double discountLevel = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_LEVEL : REGULAR_DISCOUNT_LEVEL;
             double discountPercent = Payment.Date.Equals(SpecialDateTime.Xmas()) ? XMAS_DISCOUNT_PERCENT : REGULAR_DISCOUNT_PERCENT;
