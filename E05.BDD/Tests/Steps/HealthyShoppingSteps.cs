@@ -1,6 +1,7 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 using E05.BDD.Core;
+using E05.BDD.Core.Models;
 namespace E05.BDD.SpecFlow.Tests.Steps
 {
     [Binding]
@@ -11,31 +12,51 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [Given(@"I have (.*) kg of apples for (.*) PLN / kg in the cart")]
         public void GivenIHaveKgOfApplesForPLNKgInTheCart(int kiloCount, decimal amountPLN)
         {
-            ScenarioContext.Current.Pending();
+            cart.Clear();
+            Product apples = new Product();
+            apples.Quantity = kiloCount;
+            apples.Price = (double)amountPLN;
+            apples.Name = "apples";
+            cart.Add(apples);
+          
         }
         
         [Given(@"I have (.*) loafs of bread for (.*) PLN / loaf in the cart")]
         public void GivenIHaveLoafsOfBreadForPLNLoafInTheCart(int loafCount, decimal amountPLN)
         {
-            ScenarioContext.Current.Pending();
+            cart.Clear();
+            Product bread = new Product();
+            bread.Quantity = loafCount;
+            bread.Price = (double)amountPLN;
+            bread.Name = "bread";
+            cart.Add(bread);
         }
         
         [Given(@"I have an empty cart")]
         public void GivenIHaveAnEmptyCart()
         {
-            ScenarioContext.Current.Pending();
+            cart.Clear();
         }
         
         [Given(@"I have (.*) TV Set for (.*) PLN in the cart")]
         public void GivenIHaveTVSetForPLNInTheCart(int tvCount, int amountPLN)
         {
-            ScenarioContext.Current.Pending();
+            Product tv = new Product();
+            tv.Quantity = tvCount;
+            tv.Price = amountPLN;
+            tv.Name = "tv";
+            cart.Add(tv);
         }
         
         [Given(@"I have (.*) kg of apples for (.*) PLN / kg \(with wholesale from (.*) kg\) in the cart")]
         public void GivenIHaveKgOfApplesForPLNKgWithWholesaleFromKgInTheCart(int kiloCount, decimal amountPLN, int kiloWholesaleCount)
         {
-            ScenarioContext.Current.Pending();
+            Product apples = new Product();
+            apples.Quantity = kiloCount;
+            apples.Price = (double)amountPLN;
+            apples.MinWholesaleQuantity = kiloWholesaleCount;
+            apples.Name = "apples";
+            cart.Add(apples);
         }
         
         [When(@"I go to checkout")]
