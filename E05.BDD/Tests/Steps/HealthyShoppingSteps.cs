@@ -62,7 +62,7 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [When(@"I go to checkout")]
         public void WhenIGoToCheckout()
         {
-            ScenarioContext.Current.Pending();
+            cart.Submit();
         }
         
         [Then(@"I am asked to pay (.*) PLN")]
