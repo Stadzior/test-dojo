@@ -131,7 +131,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.When("I go to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
- testRunner.Then("I am offered 3% discount And I am asked to pay 242.5 PLN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am given 3% discount And I am asked to pay 242.5 PLN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

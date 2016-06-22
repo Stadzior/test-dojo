@@ -4,7 +4,7 @@
 	I want to do the shopping in a grocery store
 
 @BasicFlow
-Scenario: I do regular shopping 
+Scenario: I do regular shopping
 	Given I have 1 kg of apples for 2.5 PLN / kg in the cart 
 	And I have 2 loafs of bread for 2.25 PLN / loaf in the cart
 	When I go to checkout
@@ -23,4 +23,4 @@ Scenario: I do a big purchase and expect a discount
 Scenario: I buy large number of products and expect a wholesale discount 
 	Given I have 100 kg of apples for 2.5 PLN / kg (with wholesale from 20 kg) in the cart 
 	When I go to checkout 
-	Then I am offered 3% discount And I am asked to pay 242.5 PLN
+	Then I am given 3% discount And I am asked to pay 242.5 PLN
