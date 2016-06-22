@@ -24,7 +24,7 @@ namespace E05.BDD.SpecFlow.Tests.Features
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SpecFlowFeature1.feature"
+#line 1 "HealthyShopping.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
