@@ -19,7 +19,7 @@ namespace E05.BDD.SpecFlow.Tests.Steps
             Mock<IShopRules> mockRules = new Mock<IShopRules>();
             Mock<IShopRepository> mockRepository = new Mock<IShopRepository>();
             mockRules.Setup(rule => rule.DiscountTreshold).Returns(249);
-            mockRules.Setup(rule => rule.Discount).Returns(1.5);
+            mockRules.Setup(rule => rule.Discount).Returns(0.015);
             _cart = new ShoppingCart(mockRules.Object, mockRepository.Object);
         }
 
@@ -90,9 +90,9 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         }
         
         [Then(@"I am given (.*)% discount And I am asked to pay (.*) PLN")]
-        public void ThenIAmGivenDiscountAndIAmAskedToPayPLN(decimal percentDiscount, decimal amountPLN)
+        public void ThenIAmGivenDiscountAndIAmAskedToPayPLN(decimal discount, decimal amountPLN)
         {
-            _request.Discount.ShouldBe((double)percentDiscount);
+            _request.Discount.ShouldBe((double)discount/100);
             _request.Total.ShouldBe((double)amountPLN);
         }
     }
