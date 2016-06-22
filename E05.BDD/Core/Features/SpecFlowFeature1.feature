@@ -5,7 +5,8 @@
 
 @BasicFlow
 Scenario: I do regular shopping 
-	Given I have 1 kg of apples for 2.5 PLN / kg in the cart And I have 2 loafs of bread for 2.25 PLN / loaf in the cart
+	Given I have 1 kg of apples for 2.5 PLN / kg in the cart 
+	And I have 2 loafs of bread for 2.25 PLN / loaf in the cart
 	When I go to checkout
 	Then I'm asked to pay 7 PLN
 
