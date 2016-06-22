@@ -3,13 +3,25 @@ using TechTalk.SpecFlow;
 using E05.BDD.Core;
 using E05.BDD.Core.Models;
 using Shouldly;
+using Moq;
 namespace E05.BDD.SpecFlow.Tests.Steps
 {
     [Binding]
     public class HealthyShoppingSteps
     {
-        private ShoppingCart _cart = new ShoppingCart(new Moq.Mock<IShopRules>().Object,new Moq.Mock<IShopRepository>().Object);
+
+        private ShoppingCart _cart;
         private PaymentRequest _request;
+
+        [BeforeScenario]
+        public void SetUp()
+        {
+            Mock<IShopRules> mockRules = new Mock<IShopRules>();
+            Mock<IShopRepository> mockRepository = new Mock<IShopRepository>();
+            mockRules.Setup(rule => rule.DiscountTreshold).Returns(249);
+            mockRules.Setup(rule => rule.Discount).Returns(1.5);
+            _cart = new ShoppingCart(mockRules.Object, mockRepository.Object);
+        }
 
         [Given(@"I have (.*) kg of apples for (.*) PLN / kg in the cart")]
         public void GivenIHaveKgOfApplesForPLNKgInTheCart(int kiloCount, decimal amountPLN)

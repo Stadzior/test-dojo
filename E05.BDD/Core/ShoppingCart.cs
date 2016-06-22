@@ -31,7 +31,7 @@ namespace E05.BDD.Core
 
             foreach (var product in cart)
             {
-                isWholesale &= product.Quantity >= product.MinWholesaleQuantity;
+                isWholesale &= (product.Quantity >= product.MinWholesaleQuantity && product.MinWholesaleQuantity>0);
                 total += product.Price * product.Quantity;
             }
 
