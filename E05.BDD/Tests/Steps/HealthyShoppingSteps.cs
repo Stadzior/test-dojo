@@ -70,19 +70,20 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [Then(@"I am asked to pay (.*) PLN")]
         public void ThenIAmAskedToPayPLN(decimal amountPLN)
         {
-            
+            _request.Total.ShouldBe((double)amountPLN);
         }
         
         [Then(@"I am not asked for anything")]
         public void ThenIAmNotAskedForAnything()
         {
-            ScenarioContext.Current.Pending();
+            _request.Total.ShouldBe(0);
         }
         
         [Then(@"I am given (.*)% discount And I am asked to pay (.*) PLN")]
         public void ThenIAmGivenDiscountAndIAmAskedToPayPLN(decimal percentDiscount, decimal amountPLN)
         {
-            ScenarioContext.Current.Pending();
+            _request.Total.ShouldBe((double)percentDiscount);
+            _request.Total.ShouldBe((double)amountPLN);
         }
     }
 }
