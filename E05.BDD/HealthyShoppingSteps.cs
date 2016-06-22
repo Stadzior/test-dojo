@@ -1,7 +1,7 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 
-namespace E05.BDD.SpecFlow.Tests.Steps
+namespace E05.BDD.SpecFlow
 {
     [Binding]
     public class HealthyShoppingSteps
@@ -42,20 +42,26 @@ namespace E05.BDD.SpecFlow.Tests.Steps
             ScenarioContext.Current.Pending();
         }
         
-        [Then(@"I'm asked to pay (.*) PLN")]
-        public void ThenIMAskedToPayPLN(int p0)
+        [Then(@"I am asked to pay (.*) PLN")]
+        public void ThenIAmAskedToPayPLN(int p0)
         {
             ScenarioContext.Current.Pending();
         }
         
-        [Then(@"I'm not asked for anything")]
-        public void ThenIMNotAskedForAnything()
+        [Then(@"I am not asked for anything")]
+        public void ThenIAmNotAskedForAnything()
         {
             ScenarioContext.Current.Pending();
         }
         
-        [Then(@"I'(.*)'m asked to pay (.*) PLN")]
-        public void ThenIMAskedToPayPLN(string p0, Decimal p1)
+        [Then(@"I am given (.*)% discount And I am asked to pay (.*) PLN")]
+        public void ThenIAmGivenDiscountAndIAmAskedToPayPLN(Decimal p0, Decimal p1)
+        {
+            ScenarioContext.Current.Pending();
+        }
+        
+        [Then(@"I am offered (.*)% discount And I am asked to pay (.*) PLN")]
+        public void ThenIAmOfferedDiscountAndIAmAskedToPayPLN(int p0, Decimal p1)
         {
             ScenarioContext.Current.Pending();
         }
