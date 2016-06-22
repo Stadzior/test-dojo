@@ -14,7 +14,6 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [Given(@"I have (.*) kg of apples for (.*) PLN / kg in the cart")]
         public void GivenIHaveKgOfApplesForPLNKgInTheCart(int kiloCount, decimal amountPLN)
         {
-            _cart.Clear();
             Product apples = new Product();
             apples.Quantity = kiloCount;
             apples.Price = (double)amountPLN;
@@ -26,7 +25,6 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [Given(@"I have (.*) loafs of bread for (.*) PLN / loaf in the cart")]
         public void GivenIHaveLoafsOfBreadForPLNLoafInTheCart(int loafCount, decimal amountPLN)
         {
-            _cart.Clear();
             Product bread = new Product();
             bread.Quantity = loafCount;
             bread.Price = (double)amountPLN;
@@ -82,7 +80,7 @@ namespace E05.BDD.SpecFlow.Tests.Steps
         [Then(@"I am given (.*)% discount And I am asked to pay (.*) PLN")]
         public void ThenIAmGivenDiscountAndIAmAskedToPayPLN(decimal percentDiscount, decimal amountPLN)
         {
-            _request.Total.ShouldBe((double)percentDiscount);
+            _request.Discount.ShouldBe((double)percentDiscount);
             _request.Total.ShouldBe((double)amountPLN);
         }
     }
